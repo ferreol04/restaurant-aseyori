@@ -1,7 +1,6 @@
 import { useMemo, useState } from 'react'
 import { useCatalog } from '../hooks/useCatalog'
 import { usePagination } from '../hooks/usePagination'
-import { forcePageRepaint } from '../lib/forceRepaint'
 import CategoryFilter from '../components/product/CategoryFilter'
 import SearchBar from '../components/common/SearchBar'
 import ProductCard from '../components/product/ProductCard'
@@ -24,14 +23,12 @@ export default function Menu() {
     setActiveSubcategory(null)
     setPage(1)
     window.scrollTo({ top: 0, behavior: 'smooth' })
-    forcePageRepaint()
   }
 
   function handleSelectSubcategory(subcategoryId) {
     setActiveSubcategory(subcategoryId)
     setPage(1)
     window.scrollTo({ top: 0, behavior: 'smooth' })
-    forcePageRepaint()
   }
 
   function handleSearch(value) {

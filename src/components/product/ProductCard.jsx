@@ -19,7 +19,7 @@ export default function ProductCard({ product, onOpenDetail }) {
       <button
         type="button"
         onClick={() => onOpenDetail(product)}
-        className="block aspect-square w-full overflow-hidden"
+        className="block aspect-square w-full cursor-pointer overflow-hidden"
       >
         {product.image ? (
           <img
@@ -36,7 +36,7 @@ export default function ProductCard({ product, onOpenDetail }) {
         <button
           type="button"
           onClick={() => onOpenDetail(product)}
-          className="line-clamp-2 text-left text-sm font-medium leading-snug text-ink hover:text-accent"
+          className="line-clamp-2 cursor-pointer text-left text-sm font-medium leading-snug text-ink hover:text-accent"
         >
           {product.name}
         </button>
@@ -49,7 +49,7 @@ export default function ProductCard({ product, onOpenDetail }) {
             type="button"
             onClick={handleAddClick}
             aria-label={`Ajouter ${product.name} au panier`}
-            className="flex h-8 w-8 items-center justify-center rounded-full bg-accent text-white transition-colors hover:bg-accent-dark"
+            className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-accent text-white transition-colors hover:bg-accent-dark"
           >
             <Plus size={16} strokeWidth={2.5} />
           </button>

@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { X, Minus, Plus } from 'lucide-react'
 import { useCartStore } from '../../store/cartStore'
 import ImagePlaceholder from '../common/ImagePlaceholder'
-import ModalPortal from '../common/ModalPortal'
 
 export default function ProductModal({ product, onClose }) {
   const addItem = useCartStore((state) => state.addItem)
@@ -23,9 +22,8 @@ export default function ProductModal({ product, onClose }) {
   }
 
   return (
-    <ModalPortal>
     <div
-      className="fixed inset-0 z-50 flex transform-gpu items-center justify-center bg-ink/55 p-4"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-ink/55 p-4"
       onClick={onClose}
     >
       <div
@@ -119,6 +117,5 @@ export default function ProductModal({ product, onClose }) {
         </div>
       </div>
     </div>
-    </ModalPortal>
   )
 }

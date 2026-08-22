@@ -25,12 +25,35 @@
   --shadow-lift: 0 16px 36px -14px rgba(47, 74, 60, 0.32);
 }
 
+* {
+  /* Le halo gris semi-transparent que Safari/Chrome iOS appliquent
+     automatiquement sur un élément tapé peut rester visuellement "collé"
+     après le relâchement du doigt, masquant un changement de couleur
+     pourtant bien appliqué en dessous (ex : bouton de catégorie actif) —
+     jusqu'à ce qu'une interaction suivante l'efface. On le désactive
+     entièrement : les états actifs/survolés du site sont déjà indiqués par
+     nos propres styles (couleur de fond, anneau, ombre…), ce halo natif
+     n'apporte rien de plus. */
+  -webkit-tap-highlight-color: transparent;
+}
+
 body {
   background: var(--color-bg);
   color: var(--color-ink);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  /* Empêche l'effet de rebond élastique (rubber-banding) d'iOS en haut/bas
+     de page, qui peut parfois retarder ou perturber les événements de clic
+     en fin de course de défilement. */
+  overscroll-behavior-y: none;
+  /* Désactive le délai d'ambiguïté "simple tap ou début de double-tap pour
+     zoomer" de Safari iOS. Sans ça, un tap peut rester "en attente" un court
+     instant avant d'être vraiment déclenché — un geste ultérieur (ex : un
+     défilement) peut alors le débloquer d'un coup, ce qui donnait
+     l'impression que certains clics restaient bloqués tant qu'on ne
+     défilait pas. */
+  touch-action: manipulation;
 }
 
 h1,
