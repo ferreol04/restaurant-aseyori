@@ -152,8 +152,7 @@ export default function Hero() {
                     key={key}
                     aria-disabled="true"
                     aria-label={`${label} — non configuré`}
-                    title={`${label} — non configuré`}
-                    className="flex h-12 w-12 cursor-not-allowed items-center justify-center rounded-full border border-white/15 text-white/35"
+                    className="flex h-12 w-12 items-center justify-center rounded-full border border-white/15 text-white/35"
                   >
                     <Icon size={19} />
                   </span>
