@@ -86,7 +86,7 @@ export default function Contact() {
               <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white/15">
                 <MessageCircle size={18} />
               </span>
-              <h2 className="mt-3 font-medium">Commander directement</h2>
+              <h2 className="mt-3 font-medium">Nous contacter directement</h2>
               {whatsappNumber ? (
                 <a
                   href={`https://wa.me/${whatsappNumber}`}

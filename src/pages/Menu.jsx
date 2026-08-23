@@ -7,6 +7,7 @@ import ProductCard from '../components/product/ProductCard'
 import ProductModal from '../components/product/ProductModal'
 import ProductCardSkeleton from '../components/product/ProductCardSkeleton'
 import Pagination from '../components/common/Pagination'
+import FloatingCartBar from '../components/common/FloatingCartBar'
 
 const PAGE_SIZE = 12
 
@@ -70,7 +71,7 @@ export default function Menu() {
         </div>
       </div>
 
-      <div className="mx-auto max-w-6xl px-4 pb-16 sm:px-6">
+      <div className="mx-auto max-w-6xl px-4 pb-24 sm:px-6">
         {loading && (
           <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
             {Array.from({ length: PAGE_SIZE }).map((_, i) => (
@@ -104,6 +105,8 @@ export default function Menu() {
       {selectedProduct && (
         <ProductModal product={selectedProduct} onClose={() => setSelectedProduct(null)} />
       )}
+
+      <FloatingCartBar />
     </div>
   )
 }

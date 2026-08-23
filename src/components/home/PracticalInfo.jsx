@@ -32,7 +32,7 @@ export default function PracticalInfo() {
             <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white/15 text-white">
               <MessageCircle size={20} />
             </span>
-            <h3 className="mt-4 font-medium">Commander directement</h3>
+            <h3 className="mt-4 font-medium">Nous contacter directement</h3>
             {whatsappNumber ? (
               <a
                 href={`https://wa.me/${whatsappNumber}`}

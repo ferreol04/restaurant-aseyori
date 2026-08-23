@@ -1,9 +1,17 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight, MessageCircle, Truck, Wallet, UtensilsCrossed } from 'lucide-react'
+import { MessageCircle, Truck, Wallet, UtensilsCrossed } from 'lucide-react'
 import { RESTAURANT_INFO } from '../../data/restaurantInfo'
 import { useRestaurantSettings } from '../../hooks/useRestaurantSettings'
 import { RESTAURANT_WHATSAPP_NUMBER } from '../../lib/whatsapp'
+import { FacebookIcon, InstagramIcon, TiktokIcon, LinkedinIcon } from '../common/SocialIcons'
+
+const SOCIAL_LINKS = [
+  { key: 'facebook_url', label: 'Facebook', Icon: FacebookIcon },
+  { key: 'instagram_url', label: 'Instagram', Icon: InstagramIcon },
+  { key: 'tiktok_url', label: 'TikTok', Icon: TiktokIcon },
+  { key: 'linkedin_url', label: 'LinkedIn', Icon: LinkedinIcon },
+]
 
 // En attendant les vraies photos du restaurant, le fond joue sur des nappes
 // de couleur de la palette (façon "mesh gradient"). Remplacer par de vraies
@@ -96,25 +104,62 @@ export default function Hero() {
             {RESTAURANT_INFO.tagline}
           </p>
 
-          <div className="mt-9 flex flex-wrap gap-3">
-            <Link
-              to="/menu"
-              className="group flex items-center gap-2 rounded-full bg-white px-6 py-3.5 font-medium text-ink shadow-lift transition-transform hover:-translate-y-0.5"
-            >
-              Voir le menu
-              <ArrowRight size={17} className="transition-transform group-hover:translate-x-0.5" />
-            </Link>
+          <div className="mt-9 flex flex-wrap items-center gap-3">
             {whatsappNumber && (
-              <a
-                href={`https://wa.me/${whatsappNumber}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 rounded-full border border-white/30 px-6 py-3.5 font-medium text-white backdrop-blur-sm transition-colors hover:bg-white/10"
+              // Ne mène plus directement à un chat WhatsApp vide : oriente
+              // d'abord vers la sélection de produits, qui alimente ensuite
+              // le vrai tunnel de commande (voir Menu.jsx / FloatingCartBar).
+              <Link
+                to="/menu"
+                className="flex items-center gap-2 rounded-full bg-white px-6 py-3.5 font-medium text-ink shadow-lift transition-transform hover:-translate-y-0.5"
               >
                 <MessageCircle size={17} />
                 Commander sur WhatsApp
-              </a>
+              </Link>
             )}
+
+            {/* Séparateur discret : distingue visuellement l'action
+                principale (commander) du groupe secondaire (réseaux
+                sociaux), sans ajouter de texte. Masqué sur mobile, où les
+                deux blocs peuvent passer à la ligne. */}
+            <div className="hidden h-8 w-px bg-white/20 sm:block" />
+
+            {/* Réseaux sociaux du restaurant — toujours affichés pour ne pas
+                laisser la bannière déséquilibrée, même si tous ne sont pas
+                encore renseignés dans l'admin : ceux sans lien restent
+                visibles mais non cliquables (aria-disabled), plutôt que de
+                disparaître. */}
+            <div className="mt-2 flex items-center gap-2 sm:mt-0">
+              {SOCIAL_LINKS.map(({ key, label, Icon }) => {
+                const href = settings[key]
+                if (href) {
+                  return (
+                    <a
+                      key={key}
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={label}
+                      title={label}
+                      className="flex h-12 w-12 items-center justify-center rounded-full border border-white/30 text-white backdrop-blur-sm transition-colors hover:bg-white/10"
+                    >
+                      <Icon size={19} />
+                    </a>
+                  )
+                }
+                return (
+                  <span
+                    key={key}
+                    aria-disabled="true"
+                    aria-label={`${label} — non configuré`}
+                    title={`${label} — non configuré`}
+                    className="flex h-12 w-12 cursor-not-allowed items-center justify-center rounded-full border border-white/15 text-white/35"
+                  >
+                    <Icon size={19} />
+                  </span>
+                )
+              })}
+            </div>
           </div>
         </div>
 
