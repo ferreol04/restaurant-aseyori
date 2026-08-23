@@ -38,7 +38,7 @@ export default function PracticalInfo() {
                 href={`https://wa.me/${whatsappNumber}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-1.5 inline-block text-sm text-white/90 underline decoration-white/40 underline-offset-2 hover:decoration-white"
+                className="mt-3 inline-flex items-center rounded-full bg-white px-5 py-2.5 text-sm font-medium text-accent hover:bg-white/90"
               >
                 Nous écrire sur WhatsApp
               </a>
