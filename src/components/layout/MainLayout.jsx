@@ -2,6 +2,7 @@ import { Outlet } from 'react-router-dom'
 import Header from './Header'
 import Footer from './Footer'
 import GuidedTour from '../common/GuidedTour'
+import ScrollToTopButton from '../common/ScrollToTopButton'
 
 export default function MainLayout() {
   return (
@@ -12,6 +13,7 @@ export default function MainLayout() {
       </main>
       <Footer />
       <GuidedTour />
+      <ScrollToTopButton />
     </div>
   )
 }
