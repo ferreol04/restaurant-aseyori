@@ -24,6 +24,7 @@ function mobileNavLinkClass({ isActive }) {
 
 export default function Header() {
   const totalItems = useCartStore((state) => state.totalItems())
+  const openDrawer = useCartStore((state) => state.openDrawer)
   const [menuOpen, setMenuOpen] = useState(false)
   const { pathname } = useLocation()
 
@@ -71,8 +72,9 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center justify-self-end gap-1">
-          <Link
-            to="/panier"
+          <button
+            type="button"
+            onClick={openDrawer}
             className="relative rounded-full p-2.5 text-ink transition-colors hover:bg-bg"
             aria-label="Voir le panier"
           >
@@ -82,7 +84,7 @@ export default function Header() {
                 {totalItems}
               </span>
             )}
-          </Link>
+          </button>
 
           <button
             type="button"

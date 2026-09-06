@@ -4,11 +4,15 @@ import ImagePlaceholder from '../common/ImagePlaceholder'
 
 export default function ProductCard({ product, onOpenDetail }) {
   const addItem = useCartStore((state) => state.addItem)
+  const openDrawer = useCartStore((state) => state.openDrawer)
   const hasSinglePrice = product.prices.length === 1
 
   function handleAddClick() {
     if (hasSinglePrice) {
       addItem(product, product.prices[0], 1)
+      // Confirmation visuelle immédiate : le panier s'ouvre juste après
+      // l'ajout, sans faire quitter la page au client.
+      openDrawer()
     } else {
       onOpenDetail(product)
     }

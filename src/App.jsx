@@ -4,7 +4,6 @@ import ScrollToTop from './components/common/ScrollToTop'
 import MainLayout from './components/layout/MainLayout'
 import Home from './pages/Home'
 import Menu from './pages/Menu'
-import Cart from './pages/Cart'
 import Contact from './pages/Contact'
 import NotFound from './pages/NotFound'
 import RequireAuth from './admin/components/RequireAuth'
@@ -37,7 +36,10 @@ function App() {
         <Route element={<MainLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/menu" element={<Menu />} />
-          <Route path="/panier" element={<Cart />} />
+          {/* Le panier est désormais un Cart Drawer accessible depuis
+              n'importe quelle page (voir CartDrawer) — /panier redirige
+              vers l'accueil pour les liens et favoris existants. */}
+          <Route path="/panier" element={<Navigate to="/" replace />} />
           <Route path="/contact" element={<Contact />} />
         </Route>
 

@@ -3,6 +3,7 @@ import { MapPin, Clock, MessageCircle, UtensilsCrossed } from 'lucide-react'
 import { RESTAURANT_INFO } from '../../data/restaurantInfo'
 import { useRestaurantSettings } from '../../hooks/useRestaurantSettings'
 import { RESTAURANT_WHATSAPP_NUMBER } from '../../lib/whatsapp'
+import { useCartStore } from '../../store/cartStore'
 import { FacebookIcon, InstagramIcon, TiktokIcon, LinkedinIcon } from '../common/SocialIcons'
 
 const SOCIAL_LINKS = [
@@ -14,6 +15,7 @@ const SOCIAL_LINKS = [
 
 export default function Footer() {
   const { settings } = useRestaurantSettings()
+  const openDrawer = useCartStore((state) => state.openDrawer)
   const activeSocialLinks = SOCIAL_LINKS.filter((s) => settings[s.key])
   const whatsappNumber = settings.whatsapp_number || RESTAURANT_WHATSAPP_NUMBER
 
@@ -59,7 +61,15 @@ export default function Footer() {
             </h3>
             <ul className="mt-4 space-y-2.5 text-sm">
               <li><Link to="/menu" className="text-white/75 transition-colors hover:text-secondary">Menu</Link></li>
-              <li><Link to="/panier" className="text-white/75 transition-colors hover:text-secondary">Panier</Link></li>
+              <li>
+                <button
+                  type="button"
+                  onClick={openDrawer}
+                  className="text-white/75 transition-colors hover:text-secondary"
+                >
+                  Panier
+                </button>
+              </li>
               <li><Link to="/contact" className="text-white/75 transition-colors hover:text-secondary">Contact</Link></li>
             </ul>
           </div>

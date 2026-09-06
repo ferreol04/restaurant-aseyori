@@ -7,8 +7,6 @@ import ProductCard from '../components/product/ProductCard'
 import ProductModal from '../components/product/ProductModal'
 import ProductCardSkeleton from '../components/product/ProductCardSkeleton'
 import Pagination from '../components/common/Pagination'
-import FloatingCartBar from '../components/common/FloatingCartBar'
-
 const PAGE_SIZE = 12
 
 export default function Menu() {
@@ -105,8 +103,6 @@ export default function Menu() {
       {selectedProduct && (
         <ProductModal product={selectedProduct} onClose={() => setSelectedProduct(null)} />
       )}
-
-      <FloatingCartBar />
     </div>
   )
 }

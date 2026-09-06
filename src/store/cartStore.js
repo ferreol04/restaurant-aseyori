@@ -12,6 +12,15 @@ export const useCartStore = create(
     (set, get) => ({
       items: [],
 
+      // État d'ouverture du Cart Drawer — piloté depuis n'importe quel
+      // composant (header, bandeau flottant, footer…) sans prop drilling,
+      // et volontairement exclu de la persistance (voir `partialize`
+      // ci-dessous) : rouvrir le panier au chargement de la page surprendrait
+      // l'utilisateur.
+      isDrawerOpen: false,
+      openDrawer: () => set({ isDrawerOpen: true }),
+      closeDrawer: () => set({ isDrawerOpen: false }),
+
       addItem: (product, price, quantity = 1) => {
         const lineId = makeLineId(product.id, price)
         const existing = get().items.find((item) => item.lineId === lineId)
@@ -66,6 +75,9 @@ export const useCartStore = create(
     }),
     {
       name: 'restaurant-cart',
+      // Seuls les articles sont persistés : l'état d'ouverture du drawer
+      // ne doit pas survivre à un rechargement de page.
+      partialize: (state) => ({ items: state.items }),
     }
   )
 )

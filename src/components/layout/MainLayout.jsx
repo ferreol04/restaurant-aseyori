@@ -3,6 +3,7 @@ import Header from './Header'
 import Footer from './Footer'
 import GuidedTour from '../common/GuidedTour'
 import ScrollToTopButton from '../common/ScrollToTopButton'
+import CartDrawer from '../cart/CartDrawer'
 
 export default function MainLayout() {
   return (
@@ -14,6 +15,7 @@ export default function MainLayout() {
       <Footer />
       <GuidedTour />
       <ScrollToTopButton />
+      <CartDrawer />
     </div>
   )
 }

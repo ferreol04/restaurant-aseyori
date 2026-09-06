@@ -5,6 +5,7 @@ import ImagePlaceholder from '../common/ImagePlaceholder'
 
 export default function ProductModal({ product, onClose }) {
   const addItem = useCartStore((state) => state.addItem)
+  const openDrawer = useCartStore((state) => state.openDrawer)
   const [selectedIndex, setSelectedIndex] = useState(0)
   const [quantity, setQuantity] = useState(1)
 
@@ -19,6 +20,9 @@ export default function ProductModal({ product, onClose }) {
   function handleAdd() {
     addItem(product, selectedPrice, quantity)
     onClose()
+    // Confirmation visuelle immédiate : le panier s'ouvre juste après
+    // l'ajout, sans faire quitter la page au client.
+    openDrawer()
   }
 
   return (
